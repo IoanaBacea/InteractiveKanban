@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+
+  <title>Archive</title>
+
+  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- Bootstrap core CSS -->
+  <link href="overall.css" rel="stylesheet">
+
+  <script type="text/javascript" src="spin.min.js"></script>
+  <script type="text/javascript" src="ladda.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="ladda-themeless.min.css">
+</head>
+
+<body ng-controller="ArchiveCtrl">
+  <div class="app-masthead">
+    <div class="container">
+      <nav class="app-nav">
+        <a class="app-nav-item " href="#/welcome">Home</a>
+        <a class="app-nav-item " href="#/addTicket">Add Ticket</a>
+        <a class="app-nav-item " href="#/story">User Story</a>
+        <a class="app-nav-item active" href="#/archive">Archive</a>
+        <a class="app-nav-item">Welcome {{username}}</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="page-header">
+      <legend>Archive</legend>
+    </div>
+
+    <div class="list-group" ng-repeat="article in articles">
+      <a href="#/ticketPage" ng-click="setId(article.$id)" class="list-group-item active">
+        <table class="tickettable" class="mainTable">
+          <tr>
+            <th colspan="4"><h4 class="list-group-item-heading">{{article.title}}</h4></td>
+          </tr>
+
+          <tr>
+            <td>Type: </td>
+            <td><p class="list-group-item-text"> {{article.type}}</p></td>
+
+            <td>Priority: </td>
+            <td  id="noneright"><p class="list-group-item-text">{{article.priority}}</p></td>
+          </tr>
+
+          <tr>
+            <td>Dificulty: </td>
+            <td><p class="list-group-item-text">{{article.dificulty}}</p></td>
+
+            <td>Due Date: </td>
+            <td id="noneright"><p class="list-group-item-text">{{article.due}}</p></td>
+          </tr>
+
+          <tr>
+            <td colspan="4" id="noneright" class="assign">Assigned To: <i>{{article.assign}}</i></td>
+          </tr>
+          
+        </table>
+      </a>
+    </div>
+  </div>
+</div>
+
+</body></html>
+

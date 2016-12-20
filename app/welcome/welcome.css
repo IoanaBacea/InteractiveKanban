@@ -1,0 +1,21 @@
+.status {
+	width: 30%; 
+	position: absolute; 
+}
+
+#inProgress {
+	left: 4%;
+}
+
+#codeReview {
+	left: 35%;
+}
+
+#done {
+	left: 66%;
+}
+
+.mainTable{
+	width: 100%;
+}
+

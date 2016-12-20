@@ -1,0 +1,193 @@
+<html lang="en">
+<head>
+
+  <title>Ticket Page</title>
+
+  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet"><!-- Bootstrap core CSS -->
+  <link href="overall.css" rel="stylesheet"> <!-- nav css -->
+  <link href="ticketPage/printstyle.css" rel="stylesheet" type="text/css" media="print">
+
+  <script type="text/javascript" src="spin.min.js"></script>
+  <script type="text/javascript" src="ladda.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="ladda-themeless.min.css">
+</head>
+
+<body ng-controller="ticketPageCtrl">
+
+    <div class="app-masthead">
+    <div class="container">
+      <nav class="app-nav">
+        <a class="app-nav-item active" href="#/welcome">Home</a>
+        <a class="app-nav-item " href="#/addTicket">Add Ticket</a>
+        <a class="app-nav-item " href="#/story">User Story</a>
+        <a class="app-nav-item " href="#/archive">Archive</a>
+        <a class="app-nav-item">Welcome {{username}}</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="page-header">
+      <h1>Ticket Page</h1>
+    </div>
+
+    <div class="list-group">
+      <table id="ticketpgtable">
+        <tr>
+          <th colspan="5"><h4 class="list-group-item-heading" id="printtitle">{{article.title}}</h4></th>
+        </tr>
+
+        <tr>
+          <td rowspan="7" class="imgbox" id="width"><img class="printpic" id="center" src="https://chart.googleapis.com/chart?cht=qr&chs=248x248&chl={{article.$id}}"/></td>
+        </tr>
+
+        <span id="item2">
+          <tr>
+            <td id="item1">Type: </td>
+            <td id="item2"><p class="list-group-item-text">{{article.type}}</p></td>
+
+            <td id="item3">Priority: </td>
+            <td id="item4"><p class="list-group-item-text">{{article.priority}}</p></td>
+          </tr>
+
+          <tr>
+            <td id="item5">Dificulty: </td>
+            <td id="item6"><p class="list-group-item-text">{{article.dificulty}}</p></td>
+            
+            <td id="item7">Due Date: </td>
+            <td id="item8"><p class="list-group-item-text">{{article.due}}</p></td>
+          </tr>
+        </span>
+
+        <tr class="noprint">
+          <td>Created by:</td>
+          <td><p class="list-group-item-text">{{article.emailId}}</p></td>
+          <td>Created on: </td>
+          <td><p class="list-group-item-text">{{article.date}}</p></td>
+        </tr>
+
+        <tr class="noprint">
+          <td colspan="5" class="assign">Assigned To: {{article.assign}}</td>
+        </tr>
+
+        <tr class="noprint">
+          <td colspan="5"><center><p class="list-group-item-text">Description:</p></center></td>
+        </tr>
+
+        <tr class="noprint">
+          <td colspan="5"><center><p class="list-group-item-text">{{article.post}}</p></center></td>
+        </tr>
+
+      </table>
+    </div>
+
+    <span class="pull-right">
+      <button class="btn btn-xs btn-info" onclick="print()">PRINT</button>
+      <button class="btn btn-xs btn-info" ng-click="editTicket(article.$id)" data-target="#editModal">EDIT</button>
+      <button class="btn btn-xs btn-warning" ng-click="confirmDelete(article.$id)" data-target="#deleteModal" >DELETE</button>
+    </span>
+
+    <!--Update Modal-->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+            <h4 class="modal-title" id="editModalLabel">Update Ticket</h4>
+          </div>
+
+          <div class="modal-body">
+            <form role="form">
+
+              <!--Ticket Name Update-->
+              <div class="form-group">
+                <label for="recipient-name" class="control-label">Ticket Name:</label>
+                <input type="text" class="form-control" ng-model="postToUpdate.title" id="recipient-name">
+              </div>
+
+              <!--Ticket Type Update-->
+              <div class="form-group">
+                <label for="ticket-type" class="control-label">Ticket Type:</label>
+
+                <select class="form-control" ng-model="postToUpdate.type" id="ticket-type">
+                  <option value="Task">Task</option>
+                  <option value="Bug">Bug</option>
+                </select>
+              </div>
+
+              <!--Ticket Priority Update-->
+              <div class="form-group">
+                <label for="ticket-priority" class="control-label">Ticket Priority:</label>
+
+                <select class="form-control" ng-model="postToUpdate.priority" id="ticket-priority">
+                  <option value="High">High</option>
+                  <option value="Normal">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+
+              <!--Ticket Dificulty Update-->
+              <div class="form-group">
+                <label for="ticket-dificuty" class="control-label">Ticket Dificulty:</label>
+
+                <select class="form-control" ng-model="postToUpdate.dificulty" id="ticket-dificulty">
+                  <option value="High">High</option>
+                  <option value="Normal">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+
+              <!--Ticket Due Date Update-->
+              <div class="form-group">
+                <label for="ticket-due" class="control-label">Ticket Due Date:</label>
+                <input type="date" class="form-control" ng-model="postToUpdate.due" id="ticket-due">
+              </div>
+
+              <!--Ticket Assign Update-->
+              <div class="form-group">
+                <label for="ticket-assign" class="control-label">Reassign:</label>
+
+                <select class="form-control" ng-model="postToUpdate.assign" id="ticket-assign">
+                  <option value=""></option>
+                  <option value="{{email.email}}" class="list-group" ng-repeat="email in Users">{{email.email}}</option>
+                </select>
+              </div>
+
+              <!--Ticket Description Update-->
+              <div class="form-group">
+                <label for="message-text" class="control-label">Description:</label>
+                <textarea class="form-control" id="message-text" ng-model="postToUpdate.post"></textarea>
+              </div>
+            </form>
+          </div>
+
+          <!--Update Buttons-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" ng-click="update()">Publish</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Delete Modal-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" style="text-align:center;">
+            <h4 class="modal-title" id="deleteModalLabel">This action will delete the ticket permanently!</h4>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" ng-click="deleteTicket()">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+</body></html>

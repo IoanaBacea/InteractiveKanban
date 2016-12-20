@@ -1,0 +1,182 @@
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #555;
+  background-color: #eeeeee;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  margin-top: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  color: #333;
+}
+
+
+/*
+ * Override Bootstrap's default container.
+ */
+
+@media (min-width: 1200px) {
+  .container {
+    width: 970px;
+  }
+}
+
+
+/*
+ * Masthead for nav
+ */
+
+.app-masthead {
+  background-color: #428bca;
+  -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+          box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+}
+
+/* Navigation links */
+.app-nav-item {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  font-weight: 500;
+  color: #cdddeb;
+}
+.app-nav-item:hover,
+.app-nav-item:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Active state gets a caret at the bottom */
+.app-nav .active {
+  color: #fff;
+}
+.app-nav .active:after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -5px;
+  vertical-align: middle;
+  content: " ";
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid;
+  border-left: 5px solid transparent;
+}
+
+/*
+ * App name and description
+ */
+
+.app-header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.app-title {
+  margin-top: 30px;
+  margin-bottom: 0;
+  font-size: 60px;
+  font-weight: normal;
+}
+.app-description {
+  font-size: 20px;
+  color: #4d4d4d;
+}
+
+
+/*
+ * Main column and sidebar layout
+ */
+
+.app-main {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/*
+* Tables
+*/
+
+table {
+  width: 100%;
+  background-color: #dddddd;
+
+}
+
+table, th, td {
+  border-collapse: collapse;
+
+}
+
+th {
+  padding: 5px;
+  text-align: center;
+  border-radius: 6px;
+
+}
+
+td {
+  text-align: left;
+  padding: 5px;
+}
+
+
+table#ticketpgtable tr:nth-child(even) {
+  background-color: #fff;
+
+}
+
+table#ticketpgtable th{
+  background-color: #428bca;
+
+}
+
+table.tickettable {
+  background-color: transparent;
+  color: #2c2c2c;
+}
+
+table.tickettable th{
+  background-color: #3d83bf;
+  color: #cdd7e2;
+
+}
+
+table.tickettable td{
+  border-right: 1px solid #3d83bf;
+  border-bottom: 1px solid #3d83bf;
+
+}
+
+td#noneright {
+  border-right: none;
+
+}
+
+b {
+  color: #337ab7;
+}
+
+i {
+  color: #cdd7e2;
+}
+
+.assign {
+  text-align: center;
+}
+
+img#center {
+    display: block;
+    margin: 0 auto;
+}
+
+td#width {
+  width: 250px;
+}
+
